@@ -1,0 +1,22 @@
+{
+  "name": "ftconfig",
+  "version": "1.0.0",
+  "description": "F*ck the config",
+  "main": "dist/index.js",
+  "types": "lib/index.ts",
+  "keywords": ["arylo", "typescript"],
+  "engines": {
+    "node": ">=6"
+  },
+  "files": ["dist", "lib"],
+  "author": "AryloYeung <arylo.open@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arylo/ftconfig.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Arylo/ftconfig/issues"
+  },
+  "homepage": "https://github.com/Arylo/ftconfig#readme",
+  "license": "MIT"
+}
