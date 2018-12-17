@@ -1,5 +1,5 @@
 export interface IReadFileOptions extends IReadOptions {
-    encoding: string;
+    encoding?: string;
 }
 
 export interface IWriteOptions extends IReadOptions {

@@ -1,4 +1,6 @@
 import * as fs from "fs";
+import makeDir = require("make-dir");
+import * as path from "path";
 import * as adapters from "./adapter";
 import { IAdapter } from "./adapter.d";
 import { IWriteOptions } from "./options.d";
@@ -33,6 +35,9 @@ export class WriteConfig<T> {
             options
         );
         if (options.path && options.encoding) {
+            if (!fs.existsSync(path.dirname(options.path))) {
+                makeDir.sync(path.dirname(options.path));
+            }
             const data = this.toString(options);
             fs.writeFileSync(options.path, data, {
                 encoding: options.encoding
