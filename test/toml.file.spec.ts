@@ -4,7 +4,7 @@ import * as config from "../lib";
 import { copyFileMacro } from "./common/macros";
 import { createNewFilepath } from "./common/utils";
 
-const FILENAME = "pkg.json";
+const FILENAME = "test.toml";
 let filepath: string;
 
 test.beforeEach(async () => {
@@ -13,7 +13,11 @@ test.beforeEach(async () => {
 
 test("Read File", (t) => {
     const obj = config.readFile(filepath).toObject();
-    t.is(obj.name, "ftconfig");
+    t.is(obj.owner.organization, "Arylo");
+    t.true(Array.isArray(obj.clients.hosts));
+    t.true(Array.isArray(obj.database.ports));
+    t.true(!!obj.servers.alpha);
+    t.true(!!obj.servers.beta);
 });
 
 test("Save File", async (t) => {
@@ -21,16 +25,20 @@ test("Save File", async (t) => {
     config.readFile(filepath).save(newFilepath);
     t.true(fs.existsSync(newFilepath));
     const obj = config.readFile(newFilepath).toObject();
-    t.is(obj.name, "ftconfig");
+    t.is(obj.owner.organization, "Arylo");
+    t.true(Array.isArray(obj.clients.hosts));
+    t.true(Array.isArray(obj.database.ports));
+    t.true(!!obj.servers.alpha);
+    t.true(!!obj.servers.beta);
 });
 
 test("Modify Object", (t) => {
     const obj = config
         .readFile(filepath)
         .modify((o) => {
-            o.name = "test";
+            o.title = "test";
             return o;
         })
         .toObject();
-    t.is(obj.name, "test");
+    t.is(obj.title, "test");
 });

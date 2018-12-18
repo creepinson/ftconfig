@@ -5,10 +5,6 @@ import { IAdapter } from "./adapter.d";
 import { IReadFileOptions, IReadOptions } from "./options.d";
 import { WriteConfig } from "./WriteConfig";
 
-interface IAnyObject {
-    [key: string]: any;
-}
-
 export const read = <T = any>(data: string, options: string | IReadOptions) => {
     if (typeof options === "string") {
         options = {
@@ -48,6 +44,22 @@ export const readFile = <T = any>(
             {
                 match: /\.ya?ml$/,
                 value: "yaml"
+            },
+            {
+                match: /\.ini$/,
+                value: "ini"
+            },
+            {
+                match: /\.toml$/,
+                value: "toml"
+            },
+            {
+                match: /\.json5$/,
+                value: "json5"
+            },
+            {
+                match: /\.hjson$/,
+                value: "hjson"
             }
         ];
         for (const item of matches) {
