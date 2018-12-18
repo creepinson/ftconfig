@@ -4,6 +4,8 @@ import * as path from "path";
 import * as constant from "./constant";
 import { sleep } from "./utils";
 
+/* istanbul ignore next */
+
 export const copyFileMacro = (filename: string) => {
     const srcFilename = filename;
     const tarFilename = `${srcFilename.split(".")[0]}-${Math.ceil(

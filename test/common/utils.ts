@@ -1,6 +1,8 @@
 import * as path from "path";
 import * as constant from "./constant";
 
+/* istanbul ignore next */
+
 export const createNewFilepath = (name?: string) => {
     name = (name || "")
         .split(".")
