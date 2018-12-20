@@ -28,8 +28,8 @@ export class WriteConfig<T> {
         }
         options = Object.assign(
             {
-                indent: 2,
-                options: "utf-8"
+                encoding: "utf-8",
+                indent: 2
             },
             this.options,
             options
