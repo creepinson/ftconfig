@@ -10,6 +10,130 @@ F*ck the config
 [![Author][AUTHOR_URL]][AUTHOR_HREF]
 [![license][LICENSE_URL]][LICENSE_HREF]
 
+## Usage
+
+### Install with npm
+
+```bash
+npm install ftconfig
+```
+
+```typescript
+const ftconfig = require("ftconfig");
+const config = ftconfig.loadFile("./package.json")
+  .modify((obj) => {
+    config.name = "simple";
+    return obj
+  })
+  .save();
+const obj = config.toObject();
+```
+
+## Module Methods
+
+### ftconfig.readFile(filepath, [options])
+
+#### Paramseters
+
+- `filepath` `{String}` Filepath
+- `options` `{Object}`
+  + `encoding` `{String="utf-8"}`
+  + `type` `{String}`
+    - `yaml`
+    - `json`
+    - `json5`
+    - `hjson`
+    - `toml`
+    - `ini`
+
+#### Return
+
+Class `Config`
+
+### ftconfig.read(configString, [options])
+
+#### Paramseters
+
+- `configString` `{String}` config string
+- `options` `{Object}`
+  + `type` `{String}`
+    - `yaml`
+    - `json`
+    - `json5`
+    - `hjson`
+    - `toml`
+    - `ini`
+
+#### Return
+
+Class `Config`
+
+### ftconfig.read(configString, [type])
+
+#### Paramseters
+
+- `configString` `{String}` config string
+- `type` `{String}`
+  - `yaml`
+  - `json`
+  - `json5`
+  - `hjson`
+  - `toml`
+  - `ini`
+
+#### Return
+
+Class `Config`
+
+### Config.modify(function)
+
+#### Paramseters
+
+- `configString` `{Function}` Get which type Return what
+
+#### Return
+
+Class `Config`
+
+### Config.save([filepath])
+
+#### Paramseters
+
+- `filepath` `{String}` Targe Filepath
+
+#### Return
+
+Class `Config`
+
+### Config.save([options])
+
+#### Paramseters
+
+- `options` `{Object}`
+  + `path` `{String}`
+  + `encoding` `{String="utf-8"}`
+  + `indent` `{Number=2}`
+
+#### Return
+
+Class `Config`
+
+### Config.toString([options])
+
+#### Paramseters
+
+- `options` `{any}`
+
+#### Return
+
+`String`
+
+### Config.toObject()
+
+#### Return
+
+`Object`
+
 [NPM_URL]: https://img.shields.io/node/v/ftconfig.svg?style=flat-square&maxAge=600
 [NPM_HREF]: https://www.npmjs.com/package/ftconfig
 [TRAVIS_URL]: https://img.shields.io/travis/Arylo/ftconfig/master.svg?style=flat-square&logo=travis&maxAge=600
