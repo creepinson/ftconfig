@@ -4,14 +4,14 @@ import * as config from "../lib";
 import { copyFileMacro } from "./common/macros";
 import { createNewFilepath } from "./common/utils";
 
-const FILENAME = "test.toml";
-let filepath: string;
-
-test.beforeEach(async () => {
-    filepath = await copyFileMacro(FILENAME);
+test.beforeEach(async (t) => {
+    t.context.FILENAME = "test.toml";
+    t.context.filepath = await copyFileMacro(t.context.FILENAME);
 });
 
 test("Read File", (t) => {
+    const { filepath } = t.context;
+
     const obj = config.readFile(filepath).toObject();
     t.is(obj.owner.organization, "Arylo");
     t.true(Array.isArray(obj.clients.hosts));
@@ -21,6 +21,8 @@ test("Read File", (t) => {
 });
 
 test("Save File", async (t) => {
+    const { FILENAME, filepath } = t.context;
+
     const newFilepath = createNewFilepath(FILENAME);
     config.readFile(filepath).save(newFilepath);
     t.true(fs.existsSync(newFilepath));
@@ -33,6 +35,8 @@ test("Save File", async (t) => {
 });
 
 test("Modify Object", (t) => {
+    const { filepath } = t.context;
+
     const obj = config
         .readFile(filepath)
         .modify((o) => {
