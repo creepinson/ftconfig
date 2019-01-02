@@ -1,6 +1,6 @@
-import test from "ava";
 import * as fs from "fs";
 import * as config from "../lib";
+import test from "./ava";
 import { copyFileMacro } from "./common/macros";
 import { createNewFilepath } from "./common/utils";
 

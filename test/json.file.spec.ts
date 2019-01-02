@@ -1,10 +1,10 @@
-import test from "ava";
 import * as fs from "fs";
 import * as config from "../lib";
+import test from "./ava";
 import { copyFileMacro } from "./common/macros";
 import { createNewFilepath } from "./common/utils";
 
-test.beforeEach(async (t) => {
+test.beforeEach("Init", async (t) => {
     t.context.FILENAME = "pkg.json";
     t.context.filepath = await copyFileMacro(t.context.FILENAME);
 });
