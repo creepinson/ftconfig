@@ -1,8 +1,8 @@
 import * as fs from "fs";
 import makeDir = require("make-dir");
 import * as path from "path";
-import * as adapters from "./adapter";
 import { IAdapter } from "./adapter.d";
+import { getAdapter } from "./adapters";
 import { IWriteOptions } from "./options.d";
 
 export class WriteConfig<T> {
@@ -13,7 +13,7 @@ export class WriteConfig<T> {
     constructor(obj: T, options: IWriteOptions) {
         this.obj = obj;
         this.options = options;
-        this.adapter = adapters[this.options.type];
+        this.adapter = getAdapter(this.options.type);
     }
 
     public modify(fn: (obj: T) => T) {
