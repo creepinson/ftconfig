@@ -1,5 +1,5 @@
 {
-  "name": "ftconfig-repos",
+  "name": "ftconfig",
   "version": "1.1.2",
   "description": "F*ck the config",
   "main": "dist/index.js",

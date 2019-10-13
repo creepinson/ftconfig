@@ -1,0 +1,8 @@
+{
+  "packages": [
+    "app/*",
+    "lib/*",
+    "lib/adapters/*"
+  ],
+  "version": "independent"
+}
