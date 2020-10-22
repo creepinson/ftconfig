@@ -1,5 +1,5 @@
 {
-  "name": "all-config",
+  "name": "aio-config",
   "version": "1.1.5",
   "description": "F*ck the config",
   "main": "dist/index.js",
