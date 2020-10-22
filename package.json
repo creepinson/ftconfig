@@ -41,12 +41,12 @@
   "author": "wyh.michael <wyh.michael.flixya@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Arylo/ftconfig.git"
+    "url": "git@github.com:wyhmichael/ftconfig.git"
   },
   "bugs": {
-    "url": "https://github.com/Arylo/ftconfig/issues"
+    "url": "https://github.com/wyhmichael/ftconfig/issues"
   },
-  "homepage": "https://github.com/Arylo/ftconfig#readme",
+  "homepage": "https://github.com/wyhmichael/ftconfig#readme",
   "license": "MIT",
   "yVersion": "2.1.25",
   "devDependencies": {
