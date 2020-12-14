@@ -143,9 +143,9 @@ Class `Config`
 
 `Object`
 
-[NPM_URL]: https://img.shields.io/node/v/ftconfig.svg?style=flat-square&maxAge=600
+[NPM_URL]: https://img.shields.io/node/v/@theoparis/ftconfig.svg?style=flat-square&maxAge=600
 
-[NPM_HREF]: https://www.npmjs.com/package/ftconfig
+[NPM_HREF]: https://www.npmjs.com/package/@theoparis/ftconfig
 
 [TRAVIS_URL]: https://img.shields.io/travis/creepinson/ftconfig/master.svg?style=flat-square&logo=travis&maxAge=600
 
