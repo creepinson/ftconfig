@@ -18,7 +18,7 @@ npm install @theoparis/config
 
 ```typescript
 const ftconfig = require("@theoparis/config");
-const config = ftconfig.loadFile("./package.json")
+const config = ftconfig.readFile("./package.json")
     .modify((obj) => {
         config.name = "simple";
         return obj
@@ -31,7 +31,7 @@ const obj = config.toObject();
 
 ### ftconfig.readFile(filepath, [options])
 
-#### Paramseters
+#### Parameters
 
 - `filepath` `{String}` Filepath
 - `options` `{Object}`
@@ -50,7 +50,7 @@ Class `Config`
 
 ### ftconfig.read(configString, [options])
 
-#### Paramseters
+#### Parameters
 
 - `configString` `{String}` config string
 - `options` `{Object}`
@@ -68,7 +68,7 @@ Class `Config`
 
 ### ftconfig.read(configString, [type])
 
-#### Paramseters
+#### Parameters
 
 - `configString` `{String}` config string
 - `type` `{String}`
@@ -85,7 +85,7 @@ Class `Config`
 
 ### Config.modify(function)
 
-#### Paramseters
+#### Parameters
 
 - `configString` `{Function}` Get which type Return what
 
@@ -93,11 +93,22 @@ Class `Config`
 
 Class `Config`
 
+### Config.validate(modify, [options])
+
+#### Parameters
+
+- `modify` `{boolean}` Modify the config object or just validate it
+- `callback` `{Function}`
+
+#### Return
+
+Class `Config`
+
 ### Config.save([filepath])
 
-#### Paramseters
+#### Parameters
 
-- `filepath` `{String}` Targe Filepath
+- `filepath` `{String}` Target Filepath
 
 #### Return
 
@@ -105,7 +116,7 @@ Class `Config`
 
 ### Config.save([options])
 
-#### Paramseters
+#### Parameters
 
 - `options` `{Object}`
     + `path` `{String}`
@@ -118,7 +129,7 @@ Class `Config`
 
 ### Config.toString([options])
 
-#### Paramseters
+#### Parameters
 
 - `options` `{any}`
 
