@@ -30,7 +30,7 @@ test("Save File", async (t) => {
 test("Modify Object", (t) => {
     const { filepath } = t.context;
     const obj = config
-        .readFile(filepath)
+        .readFile<{ andIn: string[] }>(filepath)
         .modify((o) => {
             o.andIn.push("test");
             return o;

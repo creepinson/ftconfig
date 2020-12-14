@@ -4,6 +4,8 @@ import test from "./ava";
 import { copyFileMacro } from "./common/macros";
 import { createNewFilepath } from "./common/utils";
 
+export type Section = { section: { paths: { default: { array: string[] } } } };
+
 test.beforeEach(async (t) => {
     t.context.FILENAME = "test.ini";
     t.context.filepath = await copyFileMacro(t.context.FILENAME);
@@ -11,7 +13,7 @@ test.beforeEach(async (t) => {
 
 test("Read File", (t) => {
     const { filepath } = t.context;
-    const obj = config.readFile(filepath).toObject();
+    const obj = config.readFile<Section>(filepath).toObject();
     t.true(!!obj.section.paths.default);
     t.true(Array.isArray(obj.section.paths.default.array));
 });
@@ -22,7 +24,7 @@ test("Save File", async (t) => {
     const newFilepath = createNewFilepath(FILENAME);
     config.readFile(filepath).save(newFilepath);
     t.true(fs.existsSync(newFilepath));
-    const obj = config.readFile(newFilepath).toObject();
+    const obj = config.readFile<Section>(newFilepath).toObject();
     t.true(!!obj.section.paths.default);
     t.true(Array.isArray(obj.section.paths.default.array));
 });
@@ -30,7 +32,7 @@ test("Save File", async (t) => {
 test("Modify Object", (t) => {
     const { filepath } = t.context;
     const obj = config
-        .readFile(filepath)
+        .readFile<Section>(filepath)
         .modify((o) => {
             o.section.paths.default.array.push("test");
             return o;

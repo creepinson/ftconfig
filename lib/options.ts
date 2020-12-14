@@ -1,3 +1,5 @@
+import Joi from "joi";
+
 type BufferEncoding =
     | "ascii"
     | "utf8"
@@ -21,4 +23,8 @@ export interface IWriteOptions extends IReadOptions {
 export interface IReadOptions {
     type: string;
     path?: string;
+    /**
+     * Used for validating config with Joi.
+     */
+    schema?: Joi.Schema;
 }

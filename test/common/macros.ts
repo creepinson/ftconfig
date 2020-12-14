@@ -16,9 +16,7 @@ export const copyFileMacro = (filename: string) => {
     const tarFilepath = path.resolve(constant.TEMP_PATH, "src", tarFilename);
 
     const tarDirpath = path.dirname(tarFilepath);
-    if (!fs.existsSync(tarDirpath)) {
-        makeDir.sync(tarDirpath);
-    }
+    if (!fs.existsSync(tarDirpath)) makeDir.sync(tarDirpath);
 
     return new Promise<string>((resolve) => {
         const ws = fs.createWriteStream(tarFilepath);

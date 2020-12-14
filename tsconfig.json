@@ -1,17 +1,25 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "types": ["node"],
-    "importHelpers": true,
-    "pretty": true,
-    "sourceMap": true,
-    "newLine": "LF",
-    "outDir": "dist",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "declaration": true,
-    "declarationMap": true
-  },
-  "include": ["lib/**/*", "test/**/*"]
+    "compilerOptions": {
+        "target": "es2019",
+        "module": "commonjs",
+        "types": [
+            "node"
+        ],
+        "importHelpers": true,
+        "pretty": true,
+        "sourceMap": true,
+        "newLine": "LF",
+        "outDir": "dist",
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "declaration": true,
+        "declarationMap": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "include": [
+        "lib/**/*",
+        "test/**/*"
+    ]
 }

@@ -7,11 +7,11 @@ export const createNewFilepath = (name?: string) => {
     name = (name || "")
         .split(".")
         .map((val, index, arr) => {
-            if (arr.length === 1) {
+            if (arr.length === 1)
                 val = `${Math.ceil(Math.random() * 10000)}${val}`;
-            } else if (index === arr.length - 2) {
+            else if (index === arr.length - 2)
                 val += `-${Math.ceil(Math.random() * 10000)}`;
-            }
+
             return val;
         })
         .join(".");

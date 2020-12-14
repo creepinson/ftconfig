@@ -9,15 +9,28 @@ test.beforeEach(async (t) => {
     t.context.filepath = await copyFileMacro(t.context.FILENAME);
 });
 
-test("Read File", (t) => {
-    const { filepath } = t.context;
-
-    const obj = config.readFile(filepath).toObject();
+const readFile = (t, path: string) => {
+    const obj = config
+        .readFile<{
+            owner: { organization: string };
+            clients: {
+                hosts: string[];
+            };
+            database: { ports: number[] };
+            servers: { alpha: boolean; beta: boolean };
+        }>(path)
+        .toObject();
     t.is(obj.owner.organization, "Arylo");
     t.true(Array.isArray(obj.clients.hosts));
     t.true(Array.isArray(obj.database.ports));
     t.true(!!obj.servers.alpha);
     t.true(!!obj.servers.beta);
+};
+
+test("Read File", (t) => {
+    const { filepath } = t.context;
+
+    readFile(t, filepath);
 });
 
 test("Save File", async (t) => {
@@ -26,12 +39,8 @@ test("Save File", async (t) => {
     const newFilepath = createNewFilepath(FILENAME);
     config.readFile(filepath).save(newFilepath);
     t.true(fs.existsSync(newFilepath));
-    const obj = config.readFile(newFilepath).toObject();
-    t.is(obj.owner.organization, "Arylo");
-    t.true(Array.isArray(obj.clients.hosts));
-    t.true(Array.isArray(obj.database.ports));
-    t.true(!!obj.servers.alpha);
-    t.true(!!obj.servers.beta);
+
+    readFile(t, newFilepath);
 });
 
 test("Modify Object", (t) => {

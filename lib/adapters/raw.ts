@@ -6,5 +6,5 @@ export = {
     },
     stringify(obj, options = { indent: 2 }) {
         return obj;
-    }
+    },
 };

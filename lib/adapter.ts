@@ -1,6 +1,4 @@
-import * as fs from "fs";
-
-export interface IAdapter<T = any> {
+export interface IAdapter<T = unknown> {
     key: string;
     match: RegExp;
     parse(str: string): T;
