@@ -27,6 +27,7 @@ export const read = <T = Record<string, unknown>>(
         options.type = "raw";
         adapter = getAdapter(options.type);
     }
+
     const obj: T = adapter.parse(data) as T;
     return new WriteConfig(obj, options);
 };

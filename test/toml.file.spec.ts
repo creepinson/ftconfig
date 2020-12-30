@@ -37,7 +37,7 @@ test("Save File", async (t) => {
     const { FILENAME, filepath } = t.context;
 
     const newFilepath = createNewFilepath(FILENAME);
-    config.readFile(filepath).save(newFilepath);
+    config.readFile(filepath).save({ path: newFilepath });
     t.true(fs.existsSync(newFilepath));
 
     readFile(t, newFilepath);

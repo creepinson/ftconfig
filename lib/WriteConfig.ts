@@ -1,7 +1,7 @@
 import fs from "fs";
 import makeDir from "make-dir";
 import path from "path";
-import Joi from "joi";
+import * as Zod from "zod";
 import { IAdapter } from "./adapter";
 import { getAdapter } from "./adapters";
 import { IWriteOptions } from "./options";
@@ -9,12 +9,19 @@ import { IWriteOptions } from "./options";
 export class WriteConfig<T> {
     private obj: T;
     private options: IWriteOptions;
-    private adapter: IAdapter;
+    private adapter: IAdapter<T>;
 
     constructor(obj: T, options: IWriteOptions) {
         this.obj = obj;
         this.options = options;
-        this.adapter = getAdapter(this.options.type);
+        this.adapter = getAdapter<T>(this.options.type);
+    }
+
+    /**
+     * Reloads the configuration from the adapter.
+     */
+    public read() {
+        this.obj = this.adapter.parse(this.options.path);
     }
 
     public modify(fn: (obj: T) => T) {
@@ -22,14 +29,14 @@ export class WriteConfig<T> {
         return this;
     }
 
-    public save(pathOrOptions?: string) {
+    public save(opts: { path?: string; indent?: number }) {
         let options: Record<string, unknown> = {};
-        if (typeof pathOrOptions === "string") options.path = pathOrOptions;
+        if (typeof opts.path === "string") options.path = opts.path;
 
         options = Object.assign(
             {
                 encoding: "utf-8",
-                indent: 2,
+                indent: opts.indent ?? 4,
             },
             this.options,
             options
@@ -55,22 +62,23 @@ export class WriteConfig<T> {
     }
 
     /**
-     * Validates this config object with Joi.
+     * Validates this config object with Zod.
      * @param modify Whether to modify the config or just to validate it.
-     * @param callback An optional callback function that can be used to log errors. Defaults to a function that uses console.error.
+     * @param onError An optional onError function that can be used to log errors. Defaults to a function that calls console.error.
      */
     public validate(
         modify: boolean,
-        callback: (res: Joi.ValidationResult) => void = (res) => {
-            if (res.error || res.errors)
-                console.error(
-                    `Could not load config: ${res.errors ?? res.error}`
-                );
+        onError: (err) => void = (err) => {
+            console.error(`Could not load config: ${err}`);
         }
     ) {
-        const res = this.options.schema.validate(this.obj);
-        if (modify) this.modify(() => res.value);
-        callback(res);
+        let res = {};
+        try {
+            res = this.options.schema.parse(this.obj);
+            if (modify) this.modify(() => res as T);
+        } catch (err) {
+            onError(err);
+        }
         return this;
     }
 }

@@ -1,4 +1,4 @@
-import Joi from "joi";
+import * as Zod from "zod";
 
 type BufferEncoding =
     | "ascii"
@@ -26,5 +26,5 @@ export interface IReadOptions {
     /**
      * Used for validating config with Joi.
      */
-    schema?: Joi.Schema;
+    schema?: Zod.Schema<Record<string, unknown>>;
 }
