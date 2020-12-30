@@ -1,7 +1,6 @@
 import fs from "fs";
 import makeDir from "make-dir";
 import path from "path";
-import * as Zod from "zod";
 import { IAdapter } from "./adapter";
 import { getAdapter } from "./adapters";
 import { IWriteOptions } from "./options";

@@ -12,7 +12,7 @@
         "build:test": "pnpm run tsc -- -P tsconfig.test.json",
         "pretest": "pnpm run clean && pnpm run build:test",
         "test": "ava dist/test/**/*.{spec,e2e}.js",
-        "lint": "eslint **/*.ts",
+        "lint": "eslint lib/**/*.ts",
         "lint:fix": "pnpm run lint -- --fix",
         "prepublishOnly": "pnpm run lint:fix && pnpm run test && pnpm run build:prod"
     },
