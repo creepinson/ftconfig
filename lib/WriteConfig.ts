@@ -21,6 +21,7 @@ export class WriteConfig<T> {
      */
     public read() {
         this.obj = this.adapter.parse(this.options.path);
+        return this;
     }
 
     public modify(fn: (obj: T) => T) {

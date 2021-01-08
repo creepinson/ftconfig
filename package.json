@@ -1,6 +1,6 @@
 {
     "name": "@theoparis/config",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "F*ck the config",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
