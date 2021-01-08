@@ -2,10 +2,10 @@
     "compilerOptions": {
         "target": "es2019",
         "module": "commonjs",
+        "moduleResolution": "node",
         "types": [
             "node"
         ],
-        "importHelpers": true,
         "pretty": true,
         "sourceMap": true,
         "newLine": "LF",

@@ -5,12 +5,12 @@ export = {
     match: /\.ya?ml$/,
     parse(str) {
         try {
-            return YAML.safeLoad(str);
+            return YAML.load(str);
         } catch (error) {
             return null;
         }
     },
     stringify(obj, options = { indent: 2 }) {
-        return YAML.safeDump(obj) + "\n";
+        return YAML.dump(obj, options) + "\n";
     },
 };

@@ -18,7 +18,7 @@ test("Save File", (t) => {
     const { FILENAME, filepath } = t.context;
 
     const newFilepath = createNewFilepath(FILENAME);
-    config.readFile(filepath).save(newFilepath);
+    config.readFile(filepath).save({ path: newFilepath });
     const obj = config.readFile(newFilepath).toObject();
     t.is(obj.language, "node_js");
 });
