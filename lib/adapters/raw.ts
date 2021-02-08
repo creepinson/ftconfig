@@ -1,10 +1,12 @@
+import { IAdapter } from "../adapter";
+
 export = {
     key: "raw",
     match: null,
-    parse(str) {
+    async parse(str) {
         return str;
     },
-    stringify(obj, options = { indent: 2 }) {
+    async stringify(obj) {
         return obj;
     },
-};
+} as IAdapter;

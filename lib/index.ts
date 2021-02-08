@@ -13,7 +13,7 @@ export * from "./adapter";
 /**
  * Reads a config object from a string.
  */
-export const read = <T = Record<string, unknown>>(
+export const read = async <T = Record<string, unknown>>(
     data: string,
     options: string | IReadOptions
 ) => {
@@ -28,14 +28,14 @@ export const read = <T = Record<string, unknown>>(
         adapter = getAdapter(options.type);
     }
 
-    const obj: T = adapter.parse(data) as T;
+    const obj: T = (await adapter.parse(data)) as T;
     return new WriteConfig(obj, options);
 };
 
 /**
  * Reads a config object from a file path.
  */
-export const readFile = <T = Record<string, unknown>>(
+export const readFile = async <T = Record<string, unknown>>(
     p: fs.PathLike,
     options?: IReadFileOptions
 ) => {
@@ -55,6 +55,8 @@ export const readFile = <T = Record<string, unknown>>(
 
     if (!options.encoding) options.encoding = "utf-8";
 
-    const data = fs.readFileSync(options.path, { encoding: options.encoding });
+    const data = await fs.promises.readFile(options.path, {
+        encoding: options.encoding,
+    });
     return read<T>(data, options);
 };

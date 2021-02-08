@@ -1,10 +1,12 @@
+import { IAdapter } from "../adapter";
+
 export = {
     key: "json",
     match: /\.json$/,
-    parse(str) {
+    async parse(str) {
         return JSON.parse(str);
     },
-    stringify(obj, options = { indent: 2 }) {
+    async stringify(obj, options) {
         return JSON.stringify(obj, null, options.indent) + "\n";
     },
-};
+} as IAdapter;

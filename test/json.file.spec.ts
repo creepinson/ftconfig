@@ -9,29 +9,28 @@ test.beforeEach("Init", async (t) => {
     t.context.filepath = await copyFileMacro(t.context.FILENAME);
 });
 
-test("Read File", (t) => {
+test("Read File", async (t) => {
     const { filepath } = t.context;
-    const obj = config.readFile(filepath).toObject();
+    const obj = (await config.readFile(filepath)).toObject();
     t.is(obj.name, "ftconfig");
 });
 
 test("Save File", async (t) => {
     const { FILENAME, filepath } = t.context;
     const newFilepath = createNewFilepath(FILENAME);
-    config.readFile(filepath).save({ path: newFilepath });
+    await (await config.readFile(filepath)).save({ path: newFilepath });
     t.true(fs.existsSync(newFilepath));
-    const obj = config.readFile(newFilepath).toObject();
+    const obj = (await config.readFile(newFilepath)).toObject();
     t.is(obj.name, "ftconfig");
 });
 
-test("Modify Object", (t) => {
+test("Modify Object", async (t) => {
     const { filepath } = t.context;
-    const obj = config
-        .readFile(filepath)
-        .modify((o) => {
+    const obj = (
+        await (await config.readFile(filepath)).modify(async (o) => {
             o.name = "test";
             return o;
         })
-        .toObject();
+    ).toObject();
     t.is(obj.name, "test");
 });

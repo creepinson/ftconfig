@@ -1,12 +1,14 @@
-import JSON5 from "json5";
+import { IAdapter } from "../adapter";
 
 export = {
     key: "json5",
     match: /\.json5$/,
-    parse(str) {
+    async parse(str) {
+        const JSON5 = await import("json5");
         return JSON5.parse(str);
     },
-    stringify(obj, options = { indent: 2 }) {
+    async stringify(obj, options) {
+        const JSON5 = await import("json5");
         return JSON5.stringify(obj, null, options.indent) + "\n";
     },
-};
+} as IAdapter;

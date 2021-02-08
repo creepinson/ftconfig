@@ -1,6 +1,6 @@
 import * as Zod from "zod";
 
-type BufferEncoding =
+export type BufferEncoding =
     | "ascii"
     | "utf8"
     | "utf-8"

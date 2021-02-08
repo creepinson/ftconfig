@@ -8,30 +8,29 @@ test.beforeEach(async (t) => {
     t.context.filepath = await copyFileMacro(t.context.FILENAME);
 });
 
-test("Read File", (t) => {
+test("Read File", async (t) => {
     const { filepath } = t.context;
-    const obj = config.readFile(filepath).toObject();
+    const obj = (await config.readFile(filepath)).toObject();
     t.is(obj.language, "node_js");
 });
 
-test("Save File", (t) => {
+test("Save File", async (t) => {
     const { FILENAME, filepath } = t.context;
 
     const newFilepath = createNewFilepath(FILENAME);
-    config.readFile(filepath).save({ path: newFilepath });
-    const obj = config.readFile(newFilepath).toObject();
+    await (await config.readFile(filepath)).save({ path: newFilepath });
+    const obj = (await config.readFile(newFilepath)).toObject();
     t.is(obj.language, "node_js");
 });
 
-test("Modify Object", (t) => {
+test("Modify Object", async (t) => {
     const { filepath } = t.context;
 
-    const obj = config
-        .readFile(filepath)
-        .modify((o) => {
+    const obj = (
+        await (await config.readFile(filepath)).modify(async (o) => {
             o.language = "test";
             return o;
         })
-        .toObject();
+    ).toObject();
     t.is(obj.language, "test");
 });

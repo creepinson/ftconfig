@@ -1,12 +1,14 @@
-import YAML from "js-yaml";
+import { IAdapter } from "../adapter";
 
 export = {
     key: "yaml",
     match: /\.ya?ml$/,
-    parse(str) {
+    async parse(str) {
+        const YAML = await import("js-yaml");
         return YAML.load(str);
     },
-    stringify(obj, options = { indent: 2 }) {
+    async stringify(obj, options) {
+        const YAML = await import("js-yaml");
         return YAML.dump(obj, options) + "\n";
     },
-};
+} as IAdapter;

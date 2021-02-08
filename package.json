@@ -1,6 +1,6 @@
 {
     "name": "@theoparis/config",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "F*ck the config",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -30,7 +30,7 @@
         "hjson"
     ],
     "engines": {
-        "node": ">=6"
+        "node": ">=10"
     },
     "files": [
         "dist"
@@ -47,37 +47,28 @@
     "license": "MIT",
     "yVersion": "2.1.25",
     "devDependencies": {
-        "@commitlint/cli": "^11.0.0",
-        "@commitlint/config-conventional": "^11.0.0",
-        "@commitlint/lint": "^11.0.0",
         "@iarna/toml": "^2.2.5",
         "@types/find-up": "^2.1.1",
         "@types/hjson": "^2.4.2",
         "@types/ini": "^1.3.30",
         "@types/js-yaml": "^4.0.0",
         "@types/json5": "0.0.30",
-        "@types/make-dir": "^1.0.3",
-        "@types/node": "^14.14.20",
-        "@typescript-eslint/eslint-plugin": "^4.12.0",
-        "@typescript-eslint/parser": "^4.12.0",
+        "@types/node": "^14.14.25",
+        "@typescript-eslint/eslint-plugin": "^4.14.2",
+        "@typescript-eslint/parser": "^4.14.2",
         "ava": "^3.15.0",
-        "eslint": "^7.17.0",
-        "eslint-config-prettier": "^7.1.0",
+        "eslint": "^7.19.0",
+        "eslint-config-prettier": "^7.2.0",
         "eslint-plugin-prettier": "^3.3.1",
         "find-up": "^5.0.0",
-        "husky": "^4.3.7",
-        "lint-staged": "^10.5.3",
+        "husky": "^4.3.8",
+        "json5": "^2.2.0",
+        "lint-staged": "^10.5.4",
         "prettier": "^2.2.1",
         "rimraf": "^3.0.2",
         "typescript": "^4.1.3"
     },
     "dependencies": {
-        "@iarna/toml": "^2.2.5",
-        "hjson": "^3.2.2",
-        "ini": "^1.3.8",
-        "js-yaml": "^4.0.0",
-        "json5": "^2.1.3",
-        "make-dir": "^3.1.0",
         "zod": "^2.0.0-beta.29"
     },
     "peerDependencies": {
@@ -85,7 +76,7 @@
         "hjson": "^3.2.2",
         "ini": "^2.0.0",
         "js-yaml": "^4.0.0",
-        "json5": "^2.1.3",
+        "json5": "^2.2.0",
         "zod": "^2.0.0-beta.29"
     }
 }

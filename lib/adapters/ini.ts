@@ -1,16 +1,18 @@
-import INI from "ini";
+import { IAdapter } from "../adapter";
 
 export = {
     key: "ini",
     match: /\.ini$/,
-    parse(str) {
+    async parse(str) {
         try {
+            const INI = await import("ini");
             return INI.parse(str);
         } catch (error) {
             return null;
         }
     },
-    stringify(obj, options = { indent: 2 }) {
+    async stringify(obj) {
+        const INI = await import("ini");
         return INI.stringify(obj) + "\n";
     },
-};
+} as IAdapter;

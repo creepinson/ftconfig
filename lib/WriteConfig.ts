@@ -1,10 +1,14 @@
 import fs from "fs";
-import makeDir from "make-dir";
 import path from "path";
-import { IAdapter } from "./adapter";
+import { AdapterOptions, IAdapter } from "./adapter";
 import { getAdapter } from "./adapters";
 import { IWriteOptions } from "./options";
 
+export type ConfigOptions = {
+    path: string;
+    indent: number;
+    encoding: BufferEncoding;
+} & Partial<AdapterOptions>;
 export class WriteConfig<T> {
     private obj: T;
     private options: IWriteOptions;
@@ -19,42 +23,45 @@ export class WriteConfig<T> {
     /**
      * Reloads the configuration from the adapter.
      */
-    public read() {
-        this.obj = this.adapter.parse(this.options.path);
+    public async read() {
+        this.obj = await this.adapter.parse(this.options.path);
         return this;
     }
 
-    public modify(fn: (obj: T) => T) {
-        this.obj = fn(this.obj);
+    public async modify(fn: (obj: T) => Promise<T>) {
+        this.obj = await fn(this.obj);
         return this;
     }
 
-    public save(opts: { path?: string; indent?: number }) {
-        let options: Record<string, unknown> = {};
+    public async save(opts: Partial<ConfigOptions>) {
+        // eslint-disable-next-line prefer-const
+        let options: Partial<ConfigOptions> = {};
         if (typeof opts.path === "string") options.path = opts.path;
 
         options = Object.assign(
             {
                 encoding: "utf-8",
-                indent: opts.indent ?? 4,
+                indent: opts.indent || 4,
             },
             this.options,
             options
         );
         if (options.path && options.encoding) {
-            if (!fs.existsSync(path.dirname(options.path as string)))
-                makeDir.sync(path.dirname(options.path as string));
+            if (!(await checkFileExists(path.dirname(options.path as string))))
+                await fs.promises.mkdir(path.dirname(options.path as string), {
+                    recursive: true,
+                });
 
-            const data = this.toString(options);
-            fs.writeFileSync(options.path as string, data, {
+            const data = await this.toString(options as ConfigOptions);
+            await fs.promises.writeFile(options.path as string, data, {
                 encoding: options.encoding as BufferEncoding,
             });
         }
         return this;
     }
 
-    public toString(options?) {
-        return this.adapter.stringify(this.obj, options);
+    public toString<O extends AdapterOptions = AdapterOptions>(options?: O) {
+        return this.adapter.stringify<O>(this.obj, options);
     }
 
     public toObject() {
@@ -66,19 +73,13 @@ export class WriteConfig<T> {
      * @param modify Whether to modify the config or just to validate it.
      * @param onError An optional onError function that can be used to log errors. Defaults to a function that calls console.error.
      */
-    public validate(
-        modify: boolean,
-        onError: (err) => void = (err) => {
-            console.error(`Could not load config: ${err}`);
-        }
-    ) {
+    public async validate(modify: boolean) {
         let res = {};
-        try {
-            res = this.options.schema.parse(this.obj);
-            if (modify) this.modify(() => res as T);
-        } catch (err) {
-            onError(err);
-        }
+        res = await this.options.schema.parseAsync(this.obj);
+        if (modify) this.modify(async () => res as T);
         return this;
     }
 }
+
+export const checkFileExists = (s: string) =>
+    new Promise((r) => fs.access(s, fs.constants.F_OK, (e) => r(!e)));
