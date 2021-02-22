@@ -1,8 +1,3 @@
 {
-  "eslint.alwaysShowStatus": true,
-  "eslint.autoFixOnSave": true,
-  "eslint.enable": true,
-  "tslint.alwaysShowStatus": true,
-  "tslint.autoFixOnSave": true,
-  "tslint.enable": true
+    "eslint.alwaysShowStatus": true
 }
