@@ -1,5 +1,4 @@
 import fs from "fs";
-import makeDir from "make-dir";
 import path from "path";
 import { IAdapter } from "./adapter";
 import { getAdapter } from "./adapters";
@@ -43,7 +42,9 @@ export class WriteConfig<T> {
         );
         if (options.path && options.encoding) {
             if (!fs.existsSync(path.dirname(options.path as string)))
-                makeDir.sync(path.dirname(options.path as string));
+                fs.mkdirSync(path.dirname(options.path as string), {
+                    recursive: true,
+                });
 
             const data = this.toString(options);
             fs.writeFileSync(options.path as string, data, {

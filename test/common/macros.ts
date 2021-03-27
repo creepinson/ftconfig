@@ -1,5 +1,4 @@
 import * as fs from "fs";
-import makeDir = require("make-dir");
 import * as path from "path";
 import * as constant from "./constant";
 import { sleep } from "./utils";
@@ -16,7 +15,8 @@ export const copyFileMacro = (filename: string) => {
     const tarFilepath = path.resolve(constant.TEMP_PATH, "src", tarFilename);
 
     const tarDirpath = path.dirname(tarFilepath);
-    if (!fs.existsSync(tarDirpath)) makeDir.sync(tarDirpath);
+    if (!fs.existsSync(tarDirpath))
+        fs.mkdirSync(tarDirpath, { recursive: true });
 
     return new Promise<string>((resolve) => {
         const ws = fs.createWriteStream(tarFilepath);
