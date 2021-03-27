@@ -24,7 +24,7 @@ export interface IReadOptions {
     type: string;
     path?: string;
     /**
-     * Used for validating config with Joi.
+     * Used for validating config with Zod.
      */
     schema?: Zod.Schema<Record<string, unknown>>;
 }
