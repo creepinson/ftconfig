@@ -71,6 +71,7 @@ export class WriteConfig<T> {
         modify: boolean,
         onError: (err) => void = (err) => {
             console.error(`Could not load config: ${err}`);
+            process.exit(1);
         }
     ) {
         let res = {};
