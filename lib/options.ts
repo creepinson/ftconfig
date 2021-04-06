@@ -17,7 +17,7 @@ export interface IReadFileOptions extends IReadOptions {
 }
 
 export interface IWriteOptions extends IReadOptions {
-    encoding?: string;
+    encoding?: BufferEncoding;
 }
 
 export interface IReadOptions {

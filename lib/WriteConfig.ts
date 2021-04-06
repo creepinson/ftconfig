@@ -19,7 +19,11 @@ export class WriteConfig<T> {
      * Reloads the configuration from the adapter.
      */
     public read() {
-        this.obj = this.adapter.parse(this.options.path);
+        this.obj = this.adapter.parse(
+            fs.readFileSync(this.options.path, {
+                encoding: this.options.encoding || "utf-8",
+            })
+        );
         return this;
     }
 
