@@ -4,13 +4,21 @@
     "description": "F*ck the config",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
+    "ava": {
+        "extensions": [
+            "ts"
+        ],
+        "require": [
+            "ts-node/register"
+        ]
+    },
     "scripts": {
         "clean": "rimraf dist",
         "tsc": "tsc --pretty",
         "build:prod": "pnpm run tsc -- -P tsconfig.prod.json",
         "build:test": "pnpm run tsc -- -P tsconfig.test.json",
         "pretest": "pnpm run clean && pnpm run build:test",
-        "test": "ava dist/test/**/*.{spec,e2e}.js",
+        "test": "ava test/**/*.{spec,e2e}.ts",
         "lint": "eslint lib/**/*.ts",
         "lint:fix": "pnpm run lint -- --fix",
         "prepublishOnly": "pnpm run lint:fix && pnpm run test && pnpm run build:prod"
@@ -68,6 +76,7 @@
         "lint-staged": "10.5.4",
         "prettier": "2.2.1",
         "rimraf": "3.0.2",
+        "ts-node": "^9.1.1",
         "typescript": "4.2.3"
     },
     "dependencies": {
