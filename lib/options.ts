@@ -21,7 +21,7 @@ export interface IWriteOptions extends IReadOptions {
 }
 
 export interface IReadOptions {
-    type: string;
+    type?: string;
     path?: string;
     /**
      * Used for validating config with Zod.

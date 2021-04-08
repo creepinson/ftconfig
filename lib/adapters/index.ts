@@ -3,8 +3,8 @@ import { resolve } from "path";
 import { IAdapter } from "../adapter";
 
 export const adapters: IAdapter[] = readdirSync(__dirname)
-    .filter((filename) => "index.js" !== filename)
-    .filter((filename) => /\.js$/.test(filename))
+    .filter((filename) => !/index.(js|ts)$/.test(filename))
+    .filter((filename) => /\.(js|ts)$/.test(filename))
     .map((filename) => require(resolve(__dirname, filename)));
 
 export function getAdapter<T = unknown, A = IAdapter<T>>(typeName: string) {
