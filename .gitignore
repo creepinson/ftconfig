@@ -57,6 +57,6 @@ typings/
 # Node Export Files
 dist
 package-lock.json
-pnpm-lock.yaml
+yarn.lock
 .idea
 .project
