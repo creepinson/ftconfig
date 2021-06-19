@@ -37,9 +37,6 @@
         "json5",
         "hjson"
     ],
-    "engines": {
-        "node": ">=10"
-    },
     "files": [
         "dist"
     ],
