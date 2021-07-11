@@ -5,7 +5,7 @@ specifiers:
   '@commitlint/config-conventional': 12.1.4
   '@commitlint/lint': 12.1.4
   '@iarna/toml': ^2.2.5
-  '@types/hjson': 2.4.2
+  '@types/hjson': 2.4.3
   '@types/ini': 1.3.30
   '@types/js-yaml': 4.0.1
   '@types/node': 15.12.4
@@ -40,7 +40,7 @@ devDependencies:
   '@commitlint/cli': 12.1.4
   '@commitlint/config-conventional': 12.1.4
   '@commitlint/lint': 12.1.4
-  '@types/hjson': 2.4.2
+  '@types/hjson': 2.4.3
   '@types/ini': 1.3.30
   '@types/js-yaml': 4.0.1
   '@types/node': 15.12.4
@@ -302,8 +302,8 @@ packages:
     resolution: {integrity: sha512-FTgBI767POY/lKNDNbIzgAX6miIDBs6NTCbdlDb8TrWovHsSvaVIZDlTqym29C6UqhzwcJx4CYr+AlrMywA0cA==}
     dev: true
 
-  /@types/hjson/2.4.2:
-    resolution: {integrity: sha512-MSKTfEyR8DbzJTOAY47BIJBD72ol4cu6BOw5inda0q1eEtEmurVHL4OmYB3Lxa4/DwXbWidkddvtoygbGQEDIw==}
+  /@types/hjson/2.4.3:
+    resolution: {integrity: sha512-EDixutNn3FQwa5HdET+Tx0h7TirP2knJa9TB21ySqr8XVqT/VsvvOwnanTLHUOOpNofcUhkRKhOk0Wh4YD9RSA==}
     dev: true
 
   /@types/ini/1.3.30:
