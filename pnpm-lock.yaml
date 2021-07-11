@@ -17,7 +17,7 @@ specifiers:
   eslint-plugin-prettier: 3.4.0
   find-up: 5.0.0
   hjson: ^3.2.2
-  husky: 6.0.0
+  husky: 7.0.1
   ini: ^2.0.0
   js-yaml: ^4.1.0
   json5: ^2.2.0
@@ -51,7 +51,7 @@ devDependencies:
   eslint-config-prettier: 8.3.0_eslint@7.29.0
   eslint-plugin-prettier: 3.4.0_72a2e177648c6fadf62b25899fc14390
   find-up: 5.0.0
-  husky: 6.0.0
+  husky: 7.0.1
   lint-staged: 11.0.0
   prettier: 2.2.1
   rimraf: 3.0.2
@@ -1651,8 +1651,9 @@ packages:
     engines: {node: '>=10.17.0'}
     dev: true
 
-  /husky/6.0.0:
-    resolution: {integrity: sha512-SQS2gDTB7tBN486QSoKPKQItZw97BMOd+Kdb6ghfpBc0yXyzrddI0oDV5MkDAbuB4X2mO3/nj60TRMcYxwzZeQ==}
+  /husky/7.0.1:
+    resolution: {integrity: sha512-gceRaITVZ+cJH9sNHqx5tFwbzlLCVxtVZcusME8JYQ8Edy5mpGDOqD8QBCdMhpyo9a+JXddnujQ4rpY2Ff9SJA==}
+    engines: {node: '>=12'}
     hasBin: true
     dev: true
 
