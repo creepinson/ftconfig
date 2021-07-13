@@ -21,7 +21,7 @@ specifiers:
   ini: ^2.0.0
   js-yaml: ^4.1.0
   json5: ^2.2.0
-  lint-staged: 11.0.0
+  lint-staged: 11.0.1
   prettier: 2.2.1
   rimraf: 3.0.2
   ts-node: 10.0.0
@@ -52,7 +52,7 @@ devDependencies:
   eslint-plugin-prettier: 3.4.0_72a2e177648c6fadf62b25899fc14390
   find-up: 5.0.0
   husky: 6.0.0
-  lint-staged: 11.0.0
+  lint-staged: 11.0.1
   prettier: 2.2.1
   rimraf: 3.0.2
   ts-node: 10.0.0_629a89384efebd78075d468eb55be49c
@@ -1971,8 +1971,8 @@ packages:
     resolution: {integrity: sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=}
     dev: true
 
-  /lint-staged/11.0.0:
-    resolution: {integrity: sha512-3rsRIoyaE8IphSUtO1RVTFl1e0SLBtxxUOPBtHxQgBHS5/i6nqvjcUfNioMa4BU9yGnPzbO+xkfLtXtxBpCzjw==}
+  /lint-staged/11.0.1:
+    resolution: {integrity: sha512-RkTA1ulE6jAGFskxpGAwxfVRXjHp7D9gFg/+KMARUWMPiVFP0t28Em2u0gL8sA0w3/ck3TC57F2v2RNeQ5XPnw==}
     hasBin: true
     dependencies:
       chalk: 4.1.1
